@@ -62,7 +62,7 @@
             width: 100%;
         }
 
-        .product-card {
+        .food-card {
             background: #ffffff;
             border: 1px solid #feb2b2;
             border-radius: 14px;
@@ -73,7 +73,7 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
-        .product-img-container {
+        .food-img-container {
             width: 100%;
             height: 170px;
             background: #fff0f0;
@@ -83,13 +83,13 @@
             overflow: hidden;
         }
 
-        .product-img {
+        .food-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .product-content {
+        .food-content {
             padding: 15px;
             display: flex;
             flex-direction: column;
@@ -97,14 +97,14 @@
             justify-content: space-between;
         }
 
-        .product-title {
+        .food-title {
             font-size: 1.15rem;
             font-weight: 600;
             margin-bottom: 12px;
             color: #1a202c;
         }
 
-        .product-footer {
+        .food-footer {
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -113,7 +113,7 @@
             padding-top: 12px;
         }
 
-        .product-info-row {
+        .food-info-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -349,7 +349,7 @@
     </header>
 
     <div class="main-content">
-        <div class="grid-container" id="products-container"></div>
+        <div class="grid-container" id="food-container"></div>
 
         <div class="cart-float-container" id="cart-section" style="display: none;">
             <button onclick="showCartModal()" class="cart-action-btn">
@@ -383,15 +383,18 @@
         <div class="footer-bottom">
             جميع الحقوق محفوظة © 2026
         </div>
+
+        
     </footer>
-    <!-- ربط ملف الـ JavaScript (food.js) -->
+
+
+
+
+        <!-- ربط ملف الـ JavaScript (food.js) -->
     <script src="food.js"></script>
-     <script> 
-         console.log(food);
-     </script>
 
     <script>
-        const container = document.getElementById("products-container");
+        const container = document.getElementById("food-container");
         const cartSection = document.getElementById("cart-section");
         const cartModal = document.getElementById("cartModal");
         const modalCartItems = document.getElementById("modal-cart-items");
@@ -468,15 +471,15 @@
             modalCartItems.innerHTML = "";
             let total = 0;
 
-            cart.forEach((p, index) => {
-                let itemTotal = p.priceNum * p.qty;
+            cart.forEach((foodItem, index) => {
+                let itemTotal = foodItem.priceNum * foodItem.qty;
                 total += itemTotal;
 
                 modalCartItems.innerHTML += `
                     <div class="cart-item-row">
                         <div>
-                            <strong>${p.name}</strong><br>
-                            <span style="color: #718096; font-size: 0.85rem;">الكمية: ${p.qty} | السعر: ${itemTotal}</span>
+                            <strong>${foodItem.name}</strong><br>
+                            <span style="color: #718096; font-size: 0.85rem;">الكمية: ${foodItem.qty} | السعر: ${itemTotal}</span>
                         </div>
                         <button class="remove-item-btn" onclick="removeFromCart(${index})">حذف</button>
                     </div>
@@ -500,10 +503,10 @@
             let text = "مرحباً، أريد طلب وجبات المطعم التالية:\n\n";
             let total = 0;
 
-            cart.forEach((p, i) => {
-                let itemTotal = p.priceNum * p.qty;
+            cart.forEach((foodItem, i) => {
+                let itemTotal = foodItem.priceNum * foodItem.qty;
                 total += itemTotal;
-                text += `${i + 1}- ${p.name}\nالكمية: ${p.qty}\nالسعر: ${p.priceStr}\n------------------\n`;
+                text += `${i + 1}- ${foodItem.name}\nالكمية: ${foodItem.qty}\nالسعر: ${foodItem.priceStr}\n------------------\n`;
             });
 
             text += `\nالمجموع الكلي: ${total}`;
@@ -512,34 +515,34 @@
             window.open(whatsappUrl, '_blank');
         }
 
-        // مطبق خصيصاً على حقول جدول food: f_id, f_name, f_price, f_image
-        if (typeof products !== "undefined" && products.length > 0) {
+        // جلب البيانات حصراً من مصفوفة الـ food المربوطة بجدول foodDB وتعتمد الحقول: f_id, f_name, f_price, f_image
+        if (typeof food !== "undefined" && food.length > 0) {
             container.innerHTML = "";
-            products.forEach((p, index) => {
-                let imagePath = p.f_image && p.f_image.trim() !== "" ? p.f_image : "https://via.placeholder.com/300x180?text=No+Image";
-                let productId = p.f_id !== undefined ? p.f_id : index;
+            food.forEach((item, index) => {
+                let imagePath = item.f_image && item.f_image.trim() !== "" ? item.f_image : "https://via.placeholder.com/300x180?text=No+Image";
+                let foodId = item.f_id !== undefined ? item.f_id : index;
 
                 container.innerHTML += `
-                    <div class="product-card">
-                        <div class="product-img-container">
-                            <img src="${imagePath}" alt="${p.f_name}" class="product-img" onerror="this.src='https://via.placeholder.com/300x180?text=No+Image'">
+                    <div class="food-card">
+                        <div class="food-img-container">
+                            <img src="${imagePath}" alt="${item.f_name}" class="food-img" onerror="this.src='https://via.placeholder.com/300x180?text=No+Image'">
                         </div>
-                        <div class="product-content">
-                            <div class="product-title">${p.f_name}</div>
-                            <div class="product-footer">
-                                <div class="product-info-row">
-                                    <span class="price">${p.f_price}</span>
+                        <div class="food-content">
+                            <div class="food-title">${item.f_name}</div>
+                            <div class="food-footer">
+                                <div class="food-info-row">
+                                    <span class="price">${item.f_price}</span>
                                     <div class="qty-container">
-                                        <button class="qty-btn" onclick="decreaseQty(${productId})">-</button>
-                                        <span class="qty-value" id="qty-${productId}">1</span>
-                                        <button class="qty-btn" onclick="increaseQty(${productId})">+</button>
+                                        <button class="qty-btn" onclick="decreaseQty(${foodId})">-</button>
+                                        <span class="qty-value" id="qty-${foodId}">1</span>
+                                        <button class="qty-btn" onclick="increaseQty(${foodId})">+</button>
                                     </div>
                                 </div>
                                 <div class="actions-row">
-                                    <button onclick="addToCart('${p.f_name}', '${p.f_price}', ${productId})" class="buy-btn cart-btn">
+                                    <button onclick="addToCart('${item.f_name}', '${item.f_price}', ${foodId})" class="buy-btn cart-btn">
                                         أضف للسلة
                                     </button>
-                                    <button onclick="sendWhatsApp('${p.f_name}', '${p.f_price}', ${productId})" class="buy-btn">
+                                    <button onclick="sendWhatsApp('${item.f_name}', '${item.f_price}', ${foodId})" class="buy-btn">
                                         شراء مباشر
                                     </button>
                                 </div>
@@ -549,7 +552,7 @@
                 `;
             });
         } else {
-            container.innerHTML = `<div class="empty-state">لا توجد وجبات مطروحة حالياً. تأكد من جلب البيانات وتصديرها لتظهر هنا.</div>`;
+            container.innerHTML = `<div class="empty-state">لا توجد وجبات مطروحة حالياً في جدول foodDB. تأكد من جلب البيانات وتصديرها بمتغير food لتظهر هنا.</div>`;
         }
     </script>
 
