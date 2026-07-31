@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>قائمة طعام المطعم الفاخر</title>
+<title>قائمة طعام المطعم</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 
 <style>
@@ -16,8 +16,8 @@
     }
 
     body {
-        background-color: #0f172a;
-        color: #f8fafc;
+        background-color: #f7f8fa;
+        color: #2d3748;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -25,30 +25,29 @@
 
     /* الهيدر وزر السلة الثابت بالأعلى */
     header {
-        background: rgba(30, 41, 59, 0.95);
-        backdrop-filter: blur(10px);
-        color: #ffffff;
+        background: #ffffff;
+        color: #1a202c;
         padding: 15px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         position: sticky;
         top: 0;
         z-index: 1000;
         width: 100%;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        border-bottom: 1px solid #edf2f7;
     }
 
     header h1 {
         font-size: 1.3rem;
         font-weight: 900;
-        color: #f59e0b;
+        color: #e53e3e;
     }
 
     .shein-cart-btn {
-        background: linear-gradient(135deg, #f59e0b, #d97706);
-        color: #fff;
+        background: #e53e3e;
+        color: white;
         border: none;
         padding: 8px 16px;
         border-radius: 30px;
@@ -58,7 +57,7 @@
         display: flex;
         align-items: center;
         gap: 6px;
-        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
         transition: transform 0.2s;
     }
 
@@ -68,38 +67,36 @@
 
     .cart-badge {
         background: #fff;
-        color: #d97706;
+        color: #e53e3e;
         border-radius: 50%;
         padding: 2px 6px;
         font-size: 0.75rem;
         font-weight: bold;
     }
 
-    /* شريط البحث والتصنيفات */
+    /* شريط البحث الفوري */
     .controls-container {
         max-width: 700px;
         margin: 20px auto 10px;
         padding: 0 15px;
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
     }
 
     .search-input {
         width: 100%;
         padding: 12px 18px;
-        background: #1e293b;
-        border: 1px solid rgba(255,255,255,0.1);
+        background: #ffffff;
+        border: 1px solid #cbd5e0;
         border-radius: 14px;
-        color: #fff;
+        color: #2d3748;
         font-size: 0.95rem;
         outline: none;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         transition: border-color 0.3s;
     }
 
     .search-input:focus {
-        border-color: #f59e0b;
+        border-color: #e53e3e;
     }
 
     /* حاوية المنتجات */
@@ -124,44 +121,44 @@
         }
     }
 
-    /* تصميم الكارت الفاخر (Dark Mode Glassmorphism) */
+    /* تصميم الكارت (أبيض وأحمر) */
     .card {
-        background: #1e293b;
+        background: #ffffff;
         border-radius: 16px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid #edf2f7;
         transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(245, 158, 11, 0.15);
+        box-shadow: 0 10px 25px rgba(229, 62, 62, 0.15);
     }
 
     .card-img-wrapper {
         width: 100%;
         height: 150px;
-        background: #0f172a;
+        background: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        position: relative;
+        padding: 10px;
     }
 
     .card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
         transition: transform 0.5s;
     }
 
     .card:hover img {
-        transform: scale(1.08);
+        transform: scale(1.05);
     }
 
     .card-content {
@@ -175,7 +172,7 @@
     .card h2 {
         font-size: 0.95rem;
         font-weight: 700;
-        color: #ffffff;
+        color: #2d3748;
         margin-bottom: 10px;
         line-height: 1.4;
         display: -webkit-box;
@@ -189,7 +186,7 @@
         flex-direction: column;
         gap: 10px;
         margin-top: auto;
-        border-top: 1px solid rgba(255,255,255,0.05);
+        border-top: 1px solid #f7f8fa;
         padding-top: 10px;
     }
 
@@ -202,22 +199,22 @@
     .price {
         font-size: 0.95rem;
         font-weight: 900;
-        color: #f59e0b;
+        color: #e53e3e;
     }
 
     /* أزرار الكمية (+ و -) */
     .qty-container {
         display: flex;
         align-items: center;
-        background: #0f172a;
-        border: 1px solid rgba(255,255,255,0.1);
+        background: #fff5f5;
+        border: 1px solid #feb2b2;
         border-radius: 8px;
         overflow: hidden;
     }
 
     .qty-btn {
-        background: rgba(245, 158, 11, 0.15);
-        color: #f59e0b;
+        background: #feb2b2;
+        color: #742a2a;
         border: none;
         width: 28px;
         height: 28px;
@@ -228,18 +225,18 @@
     }
 
     .qty-btn:hover {
-        background: rgba(245, 158, 11, 0.3);
+        background: #fc8181;
     }
 
     .qty-value {
         padding: 0 10px;
         font-size: 0.9rem;
         font-weight: 700;
-        color: #fff;
+        color: #2d3748;
     }
 
     .order-btn {
-        background: linear-gradient(135deg, #f59e0b, #d97706);
+        background: #e53e3e;
         color: white;
         border: none;
         width: 100%;
@@ -248,12 +245,12 @@
         font-weight: 700;
         font-size: 0.85rem;
         cursor: pointer;
-        box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
-        transition: opacity 0.2s;
+        box-shadow: 0 4px 10px rgba(229, 62, 62, 0.3);
+        transition: background 0.2s;
     }
 
     .order-btn:hover {
-        opacity: 0.9;
+        background: #c53030;
     }
 
     /* نافذة السلة (Modal) */
@@ -264,8 +261,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(5px);
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
         justify-content: center;
         align-items: flex-end;
         z-index: 2000;
@@ -278,7 +275,7 @@
     }
 
     .modal-content {
-        background: #1e293b;
+        background: #ffffff;
         width: 100%;
         max-width: 500px;
         border-top-left-radius: 24px;
@@ -287,9 +284,8 @@
         max-height: 80vh;
         display: flex;
         flex-direction: column;
-        box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
-        border: 1px solid rgba(255,255,255,0.05);
-        color: #fff;
+        box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+        color: #2d3748;
     }
 
     @media (min-width: 600px) {
@@ -302,18 +298,18 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        border-bottom: 1px solid #edf2f7;
         padding-bottom: 12px;
         font-weight: bold;
         font-size: 1.15rem;
-        color: #f59e0b;
+        color: #e53e3e;
     }
 
     .close-modal {
         background: none;
         border: none;
         font-size: 1.5rem;
-        color: #94a3b8;
+        color: #a0aec0;
         cursor: pointer;
     }
 
@@ -328,12 +324,12 @@
         justify-content: space-between;
         align-items: center;
         padding: 12px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        border-bottom: 1px solid #f7f8fa;
         font-size: 0.9rem;
     }
 
     .remove-item {
-        color: #ef4444;
+        color: #e53e3e;
         background: none;
         border: none;
         font-weight: bold;
@@ -342,7 +338,7 @@
     }
 
     .modal-footer {
-        border-top: 1px solid rgba(255,255,255,0.05);
+        border-top: 1px solid #edf2f7;
         padding-top: 15px;
     }
 
@@ -352,11 +348,11 @@
         font-weight: bold;
         font-size: 1.15rem;
         margin-bottom: 15px;
-        color: #fff;
+        color: #2d3748;
     }
 
     .send-whatsapp-btn {
-        background: #22c55e;
+        background: #25d366;
         color: white;
         border: none;
         width: 100%;
@@ -365,7 +361,7 @@
         font-weight: bold;
         font-size: 1rem;
         cursor: pointer;
-        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         transition: opacity 0.2s;
     }
 
@@ -383,13 +379,13 @@
         border-radius: 12px;
         padding: 12px;
         position: fixed;
-        zIndex: 3000;
+        z-index: 3000;
         left: 50%;
         bottom: 30px;
         transform: translateX(-50%);
         font-size: 0.9rem;
         font-weight: bold;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         transition: visibility 0.3s, opacity 0.3s;
         opacity: 0;
     }
@@ -433,7 +429,7 @@
     .empty-state {
         grid-column: 1 / -1;
         text-align: center;
-        color: #94a3b8;
+        color: #718096;
         padding: 40px;
         font-size: 1rem;
     }
@@ -443,7 +439,7 @@
 
     <!-- هيدر مع زر السلة الثابت -->
     <header>
-        <h1>مطعمنا الفاخر</h1>
+        <h1>قائمة الطعام</h1>
         <button class="shein-cart-btn" onclick="openCartModal()">
             🛍️ السلة <span class="cart-badge" id="cartBadge">0</span>
         </button>
@@ -464,8 +460,8 @@
 
     <!-- قسم التعريف بلون خمري فخم -->
     <footer>
-        <div class="footer-title">مطعمنا الفاخر والأصيل</div>
-        <div class="footer-desc">نقدم لك أشهى المأكولات الطازجة بأعلى معايير الجودة العالمية.<br>اطلب الآن بكل سهولة واستمتع بألذ طعم عبر خدمة الواتساب.</div>
+        <div class="footer-title">مطعمنا المميز</div>
+        <div class="footer-desc">نقدم لك أشهى المأكولات الطازجة والسريعة بأعلى معايير الجودة.<br>اطلب الآن بكل سهولة واستمتع بألذ طعم عبر الواتساب.</div>
         <div class="footer-copy">جميع الحقوق محفوظة © 2026</div>
     </footer>
 
@@ -542,7 +538,7 @@
             box.innerHTML = `<div class="empty-state">لا توجد وجبات متوفرة حالياً في ملف food.js</div>`;
         }
 
-        // دالة البحث الفوري
+        // دالة البحث الفوري والتنبؤ
         function filterFood() {
             let query = document.getElementById("searchInput").value.toLowerCase();
             let filtered = food.filter(item => item.name.toLowerCase().includes(query));
@@ -622,7 +618,7 @@
                 <div class="cart-item-row">
                     <div>
                         <strong>${item.name}</strong><br>
-                        <span style="color: #94a3b8; font-size: 0.8rem;">الكمية: ${item.qty} | السعر الإجمالي: ${itemTotal}</span>
+                        <span style="color: #718096; font-size: 0.8rem;">الكمية: ${item.qty} | السعر الإجمالي: ${itemTotal}</span>
                     </div>
                     <button class="remove-item" onclick="removeFromCart(${index})">حذف</button>
                 </div>
