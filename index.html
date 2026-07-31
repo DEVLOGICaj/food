@@ -273,6 +273,276 @@
     .order-btn:hover {
         background: #c53030;
     }
+
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        justify-content: center;
+        align-items: flex-end;
+        z-index: 2000;
+    }
+
+    @media (min-width: 600px) {
+        .modal {
+            align-items: center;
+        }
+    }
+
+    .modal-content {
+        background: #ffffff;
+        width: 100%;
+        max-width: 500px;
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+        padding: 20px;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+        color: #2d3748;
+    }
+
+    @media (min-width: 600px) {
+        .modal-content {
+            border-radius: 20px;
+        }
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #edf2f7;
+        padding-bottom: 12px;
+        font-weight: bold;
+        font-size: 1.15rem;
+        color: #e53e3e;
+    }
+
+    .close-modal {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #a0aec0;
+        cursor: pointer;
+    }
+
+    .modal-body {
+        overflow-y: auto;
+        padding: 15px 0;
+        flex-grow: 1;
+    }
+
+    .cart-item-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f7f8fa;
+        font-size: 0.9rem;
+    }
+
+    .cart-qty-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 5px;
+    }
+
+    .cart-qty-btn {
+        background: #edf2f7;
+        color: #2d3748;
+        border: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .cart-qty-btn:hover {
+        background: #cbd5e0;
+    }
+
+    .remove-item {
+        color: #e53e3e;
+        background: none;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 0.85rem;
+    }
+
+    .customer-info-section {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 12px;
+        margin-top: 15px;
+    }
+
+    .customer-info-section h3 {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #4a5568;
+        margin-bottom: 3px;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #cbd5e0;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        outline: none;
+        font-family: 'Cairo', sans-serif;
+    }
+
+    .form-input:focus {
+        border-color: #e53e3e;
+    }
+
+    .location-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .get-location-btn {
+        background: #3182ce;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background 0.2s;
+    }
+
+    .get-location-btn:hover {
+        background: #2b6cb0;
+    }
+
+    .location-status {
+        font-size: 0.75rem;
+        color: #718096;
+        margin-top: 4px;
+    }
+
+    .modal-footer {
+        border-top: 1px solid #edf2f7;
+        padding-top: 15px;
+    }
+
+    .total-row {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 1.15rem;
+        margin-bottom: 15px;
+        color: #2d3748;
+    }
+
+    .send-whatsapp-btn {
+        background: #25d366;
+        color: white;
+        border: none;
+        width: 100%;
+        padding: 12px;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        transition: opacity 0.2s;
+    }
+
+    .send-whatsapp-btn:hover {
+        opacity: 0.9;
+    }
+
+    #toast {
+        visibility: hidden;
+        min-width: 220px;
+        background-color: #22c55e;
+        color: #fff;
+        text-align: center;
+        border-radius: 12px;
+        padding: 12px;
+        position: fixed;
+        z-index: 3000;
+        left: 50%;
+        bottom: 30px;
+        transform: translateX(-50%);
+        font-size: 0.9rem;
+        font-weight: bold;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        transition: visibility 0.3s, opacity 0.3s;
+        opacity: 0;
+    }
+
+    #toast.show {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    footer {
+        background-color: #581845;
+        color: #ffffff;
+        text-align: center;
+        padding: 35px 20px;
+        margin-top: 40px;
+        border-top: 4px solid #900C3F;
+    }
+
+    .footer-title {
+        font-size: 1.3rem;
+        font-weight: 900;
+        margin-bottom: 8px;
+        color: #ffc300;
+    }
+
+    .footer-desc {
+        font-size: 0.9rem;
+        color: #f8c471;
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+
+    .footer-copy {
+        font-size: 0.8rem;
+        color: #e8daef;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 12px;
+    }
+
+    .empty-state {
+        grid-column: 1 / -1;
+        text-align: center;
+        color: #718096;
+        padding: 40px;
+        font-size: 1rem;
+    }
 </style>
 </head>
 <body>
@@ -430,7 +700,7 @@
         function addToCart(name, priceStr, id) {
             let qtyEl = document.getElementById("qty-" + id);
             let qty = qtyEl ? parseInt(qtyEl.innerText) : 1;
-            let numericPrice = parseFloat(priceStr.replace(/[^0-9.]/g, '')) || 0;
+            let numericPrice = parseFloat(String(priceStr).replace(/[^0-9.]/g, '')) || 0;
             let existingItem = cart.find(x => x.name === name);
 
             if (existingItem) {
@@ -575,7 +845,7 @@
             cart.forEach((item, i) => {
                 let itemTotal = item.priceNum * item.qty;
                 totalSum += itemTotal;
-                text += `${i + 1}- ${item.name} (الكمية: ${item.qty}) - السعر: ${item.priceStr} ل.س\n`;
+                text += `${i + 1}- ${item.name} (الكمية: ${item.qty}) - السعر: ${item.priceNum} ل.س\n`;
             });
 
             text += `------------------\n`;
