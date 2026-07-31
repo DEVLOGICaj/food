@@ -23,11 +23,10 @@
         flex-direction: column;
     }
 
-    /* الهيدر وزر السلة الثابت بالأعلى */
     header {
         background: #ffffff;
         color: #1a202c;
-        padding: 15px 20px;
+        padding: 12px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -39,10 +38,36 @@
         border-bottom: 1px solid #edf2f7;
     }
 
-    header h1 {
-        font-size: 1.3rem;
+    .brand-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .brand-logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #e53e3e;
+        background: #fff5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+
+    .brand-info h1 {
+        font-size: 1.1rem;
         font-weight: 900;
-        color: #e53e3e;
+        color: #2d3748;
+        line-height: 1.2;
+    }
+
+    .brand-info span {
+        font-size: 0.75rem;
+        color: #718096;
+        font-weight: 600;
     }
 
     .shein-cart-btn {
@@ -74,7 +99,6 @@
         font-weight: bold;
     }
 
-    /* شريط البحث الفوري */
     .controls-container {
         max-width: 700px;
         margin: 20px auto 10px;
@@ -99,7 +123,6 @@
         border-color: #e53e3e;
     }
 
-    /* حاوية المنتجات */
     .main-content {
         flex: 1;
         padding: 10px 0 30px;
@@ -121,7 +144,6 @@
         }
     }
 
-    /* تصميم الكارت (أبيض وأحمر) */
     .card {
         background: #ffffff;
         border-radius: 16px;
@@ -202,7 +224,6 @@
         color: #e53e3e;
     }
 
-    /* أزرار الكمية (+ و -) */
     .qty-container {
         display: flex;
         align-items: center;
@@ -253,7 +274,6 @@
         background: #c53030;
     }
 
-    /* نافذة السلة (Modal) */
     .modal {
         display: none;
         position: fixed;
@@ -281,7 +301,7 @@
         border-top-left-radius: 24px;
         border-top-right-radius: 24px;
         padding: 20px;
-        max-height: 80vh;
+        max-height: 85vh;
         display: flex;
         flex-direction: column;
         box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
@@ -328,6 +348,28 @@
         font-size: 0.9rem;
     }
 
+    .cart-qty-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 5px;
+    }
+
+    .cart-qty-btn {
+        background: #edf2f7;
+        color: #2d3748;
+        border: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .cart-qty-btn:hover {
+        background: #cbd5e0;
+    }
+
     .remove-item {
         color: #e53e3e;
         background: none;
@@ -335,6 +377,34 @@
         font-weight: bold;
         cursor: pointer;
         font-size: 0.85rem;
+    }
+
+    .order-notes-container {
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+
+    .order-notes-container label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #4a5568;
+        margin-bottom: 5px;
+    }
+
+    .order-notes-input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #cbd5e0;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        outline: none;
+        resize: none;
+        font-family: 'Cairo', sans-serif;
+    }
+
+    .order-notes-input:focus {
+        border-color: #e53e3e;
     }
 
     .modal-footer {
@@ -369,7 +439,6 @@
         opacity: 0.9;
     }
 
-    /* إشعار منبثق عصري (Toast Notification) */
     #toast {
         visibility: hidden;
         min-width: 220px;
@@ -395,7 +464,6 @@
         opacity: 1;
     }
 
-    /* قسم التعريف (Footer) بلون خمري فخم */
     footer {
         background-color: #581845;
         color: #ffffff;
@@ -437,42 +505,49 @@
 </head>
 <body>
 
-    <!-- هيدر مع زر السلة الثابت -->
     <header>
-        <h1>قائمة الطعام</h1>
+        <div class="brand-container">
+            <img src="https://via.placeholder.com/42?text=LOGO" alt="Logo" class="brand-logo" id="brandLogoImg">
+            <div class="brand-info">
+                <h1 id="restaurantName">اسم مطعمك</h1>
+                <span>الأكل الأشهى والأسرع</span>
+            </div>
+        </div>
         <button class="shein-cart-btn" onclick="openCartModal()">
             🛍️ السلة <span class="cart-badge" id="cartBadge">0</span>
         </button>
     </header>
 
-    <!-- شريط البحث الفوري -->
     <div class="controls-container">
-        <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث عن وجبتك المفضلة..." onkeyup="filterFood()">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث عن وجبتك المفضلة (مثل شاورما)..." onkeyup="filterFood()">
     </div>
 
-    <!-- حاوية الوجبات -->
     <div class="main-content">
         <div class="container" id="foodContainer"></div>
     </div>
 
-    <!-- إشعار الإضافة للسلة -->
     <div id="toast">تمت إضافة الوجبة إلى السلة بنجاح! 🛒</div>
 
-    <!-- قسم التعريف بلون خمري فخم -->
     <footer>
         <div class="footer-title">مطعمنا المميز</div>
         <div class="footer-desc">نقدم لك أشهى المأكولات الطازجة والسريعة بأعلى معايير الجودة.<br>اطلب الآن بكل سهولة واستمتع بألذ طعم عبر الواتساب.</div>
         <div class="footer-copy">جميع الحقوق محفوظة © 2026</div>
     </footer>
 
-    <!-- نافذة السلة (Modal) -->
     <div class="modal" id="cartModal">
         <div class="modal-content">
             <div class="modal-header">
                 <span>مشترياتك في السلة</span>
                 <button class="close-modal" onclick="closeCartModal()">&times;</button>
             </div>
+           
             <div class="modal-body" id="modalCartItems"></div>
+
+            <div class="order-notes-container">
+                <label for="orderNotes">ملاحظات على الطلب (اختياري):</label>
+                <textarea id="orderNotes" class="order-notes-input" rows="2" placeholder="مثال: بدون بصل، صوص زيادة..."></textarea>
+            </div>
+
             <div class="modal-footer">
                 <div class="total-row">
                     <span>المجموع الكلي:</span>
@@ -483,9 +558,7 @@
         </div>
     </div>
 
-    <!-- ربط ملف الـ food.js -->
     <script src="food.js"></script>
-
     <script>
         const ownerPhone = "963946887715";
         let cart = [];
@@ -495,7 +568,6 @@
         let modalCartItems = document.getElementById("modalCartItems");
         let modalTotal = document.getElementById("modalTotal");
 
-        // دالة عرض المنتجات
         function renderFood(items) {
             if (!items || items.length === 0) {
                 box.innerHTML = `<div class="empty-state">لا توجد وجبات مطابقة لبحثك.</div>`;
@@ -531,21 +603,18 @@
             });
         }
 
-        // تشغيل العرض الأولي عند تحميل الصفحة
         if (typeof food !== "undefined" && food.length > 0) {
             renderFood(food);
         } else {
             box.innerHTML = `<div class="empty-state">لا توجد وجبات متوفرة حالياً في ملف food.js</div>`;
         }
 
-        // دالة البحث الفوري والتنبؤ
         function filterFood() {
             let query = document.getElementById("searchInput").value.toLowerCase();
             let filtered = food.filter(item => item.name.toLowerCase().includes(query));
             renderFood(filtered);
         }
 
-        // زيادة الكمية بالكارت
         function increaseQty(id) {
             let qtyEl = document.getElementById("qty-" + id);
             if (qtyEl) {
@@ -554,7 +623,6 @@
             }
         }
 
-        // نقصان الكمية بالكارت
         function decreaseQty(id) {
             let qtyEl = document.getElementById("qty-" + id);
             if (qtyEl) {
@@ -565,7 +633,6 @@
             }
         }
 
-        // إضافة للسلة مع إظهار إشعار Toast
         function addToCart(name, priceStr, id) {
             let qtyEl = document.getElementById("qty-" + id);
             let qty = qtyEl ? parseInt(qtyEl.innerText) : 1;
@@ -587,20 +654,37 @@
             showToast();
         }
 
-        // إشعار Toast منبثق
         function showToast() {
             let toast = document.getElementById("toast");
             toast.className = "show";
             setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2500);
         }
 
-        // تحديث عداد السلة
         function updateCartBadge() {
             let totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
             cartBadge.innerText = totalCount;
         }
 
-        // فتح نافذة السلة
+        function increaseCartQty(index) {
+            cart[index].qty++;
+            openCartModal();
+            updateCartBadge();
+        }
+
+        function decreaseCartQty(index) {
+            if (cart[index].qty > 1) {
+                cart[index].qty--;
+            } else {
+                cart.splice(index, 1);
+            }
+            updateCartBadge();
+            if (cart.length > 0) {
+                openCartModal();
+            } else {
+                closeCartModal();
+            }
+        }
+
         function openCartModal() {
             if (cart.length === 0) {
                 alert("السلة فارغة حالياً!");
@@ -618,7 +702,12 @@
                 <div class="cart-item-row">
                     <div>
                         <strong>${item.name}</strong><br>
-                        <span style="color: #718096; font-size: 0.8rem;">الكمية: ${item.qty} | السعر الإجمالي: ${itemTotal}</span>
+                        <span style="color: #718096; font-size: 0.8rem;">الإجمالي: ${itemTotal}</span>
+                        <div class="cart-qty-controls">
+                            <button class="cart-qty-btn" onclick="decreaseCartQty(${index})">-</button>
+                            <span style="font-size: 0.85rem; font-weight: bold;">${item.qty}</span>
+                            <button class="cart-qty-btn" onclick="increaseCartQty(${index})">+</button>
+                        </div>
                     </div>
                     <button class="remove-item" onclick="removeFromCart(${index})">حذف</button>
                 </div>
@@ -629,12 +718,10 @@
             cartModal.style.display = "flex";
         }
 
-        // إغلاق نافذة السلة
         function closeCartModal() {
             cartModal.style.display = "none";
         }
 
-        // حذف عنصر من السلة
         function removeFromCart(index) {
             cart.splice(index, 1);
             updateCartBadge();
@@ -645,10 +732,10 @@
             }
         }
 
-        // إرسال السلة عبر الواتساب
         function sendCartWhatsApp() {
             if (cart.length === 0) return;
 
+            let notes = document.getElementById("orderNotes").value.trim();
             let text = "مرحباً، أريد طلب الوجبات التالية:\n\n";
             let totalSum = 0;
 
@@ -659,6 +746,10 @@
             });
 
             text += `\nالمجموع الكلي: ${totalSum}`;
+
+            if (notes !== "") {
+                text += `\n\n📝 ملاحظات الزبون:\n${notes}`;
+            }
 
             let whatsappUrl = `https://wa.me/${ownerPhone}?text=` + encodeURIComponent(text);
             window.open(whatsappUrl, '_blank');
